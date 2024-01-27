@@ -13,6 +13,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late int num1, num2, num3, num4, num5;
 
+  int obtainedMarks = 0;
+  late double percentage;
+  late String grade;
+
+  String calculateGrade(double percentage) {
+    if (percentage >= 80) {
+      return 'A1';
+    } else if (percentage >= 70) {
+      return 'A';
+    } else if (percentage >= 60) {
+      return 'B';
+    } else if (percentage >= 40) {
+      return 'C';
+    } else {
+      return 'F';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -146,23 +164,83 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.greenAccent,
                       foregroundColor: Colors.black87,
                     ),
-                    onPressed: () {},
-                    child: const Text('Calculate'),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        setState(() {
+                          obtainedMarks = num1 + num2 + num3 + num4 + num5;
+                          percentage = (obtainedMarks / 500) * 100;
+                          grade = calculateGrade(percentage);
+                        });
+                      }
+                    },
+                    label: const Text('Calculate'),
+                    icon: const Icon(Icons.calculate),
                   ),
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.redAccent,
                       foregroundColor: Colors.white,
                     ),
-                    onPressed: () {},
-                    child: const Text('Clear'),
+                    onPressed: () {
+                      formKey.currentState!.reset();
+                      setState(() {
+                        obtainedMarks = 0;
+                      });
+                    },
+                    label: const Text('Clear'),
+                    icon: const Icon(Icons.delete),
                   ),
                 ],
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                'Report:',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Obtained Marks: ${(obtainedMarks == 0) ? ' ______' : '$obtainedMarks/500'}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    Text(
+                      'Percentage: ${(obtainedMarks == 0) ? ' ______' : '${percentage.floorToDouble()}%'}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    Text(
+                      'Grade: ${(obtainedMarks == 0) ? ' ______' : grade}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
