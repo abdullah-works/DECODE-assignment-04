@@ -1,17 +1,17 @@
-# DECODE-assignment-04
-## dmc_app
+# DMC App
+## DECODE-assignment-04
 
-This (repository) is a flutter project containing specifically Dart code (solution) for the *Assignment No. 04* (see details below) given as part of the overall assessment during the *DECODE Flutter Training Program.
+This (repository) is a Flutter Project containing specifically Dart Code (solution) for the Assignment No. 04 (see details below) given as part of the overall assessment during the *DECODE App Development Training Program.
 
-*DECODE: Digital Empowerment through Commerce Opportunities & Digital Education
+*Digital Empowerment through Commerce Opportunities & Digital Education
 
 ## Requirements
 
-Create a DMC (Detailed Marks Certificate) App which will be able to:
-    1. Take input as Marks for the Subjects. (Form, TextFormField)
-    2. Validate those inputs.
-    3. If valid, Generate a Report which will include Obtained Marks, Percentage & Grade based on the input and given criteria.
-    4. Clear the Form when needed.
+Create a DMC (Detailed Marks Certificate) App which will be able to:<br>
+    1. Take input as Marks for the Subjects. (Form, TextFormField)<br>
+    2. Validate those inputs.<br>
+    3. If valid, Generate a Report which will include Obtained Marks, Percentage & Grade based on the input and given criteria.<br>
+    4. Clear the Form when needed.<br>
 
 ## Getting Started
 
